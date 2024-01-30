@@ -3,10 +3,7 @@ package fr.timothe.cinemacda4.controller;
 import fr.timothe.cinemacda4.entity.Realisateur;
 import fr.timothe.cinemacda4.service.RealisateurService;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +24,11 @@ public class RealisateurController {
     @GetMapping(path ="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Realisateur findById(@PathVariable Integer id) {
         return this.realisateurService.findById(id);
+    }
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Realisateur save(@RequestBody Realisateur realisateur) {
+        this.realisateurService.save(realisateur);
+        return realisateur;
     }
 }

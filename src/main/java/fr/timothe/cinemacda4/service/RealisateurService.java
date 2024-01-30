@@ -28,4 +28,9 @@ public class RealisateurService {
                 )
         );
     }
+
+    public Realisateur save(Realisateur realisateur) {
+        this.realisateurRepository.save(realisateur);
+        return realisateur;
+    }
 }
