@@ -33,4 +33,11 @@ public class RealisateurService {
         this.realisateurRepository.save(realisateur);
         return realisateur;
     }
+
+    public Realisateur update(Realisateur realisateur, Integer id) {
+        this.findById(id);
+        realisateur.setId(id);
+        this.realisateurRepository.save(realisateur);
+        return realisateur;
+    }
 }

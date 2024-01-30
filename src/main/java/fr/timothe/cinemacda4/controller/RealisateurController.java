@@ -31,4 +31,10 @@ public class RealisateurController {
         this.realisateurService.save(realisateur);
         return realisateur;
     }
+
+    @PutMapping(path = "/{id}")
+    public Realisateur update(@RequestBody Realisateur realisateur, @PathVariable Integer id) {
+        this.realisateurService.update(realisateur, id);
+        return realisateur;
+    }
 }
