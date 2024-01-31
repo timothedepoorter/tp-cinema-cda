@@ -3,6 +3,7 @@ package fr.timothe.cinemacda4.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.timothe.cinemacda4.dto.FilmActeursDto;
 import fr.timothe.cinemacda4.dto.FilmCompletDto;
+import fr.timothe.cinemacda4.dto.FilmRealisateurDto;
 import fr.timothe.cinemacda4.dto.FilmsReduitsDto;
 import fr.timothe.cinemacda4.entity.Film;
 import fr.timothe.cinemacda4.service.FilmService;
@@ -44,6 +45,12 @@ public class FilmController {
     public FilmActeursDto findActeursByFilm(@PathVariable Integer id) {
         Film film = filmService.findById(id);
         return objectMapper.convertValue(film, FilmActeursDto.class);
+    }
+
+    @GetMapping(path ="/{id}/realisateur", produces = MediaType.APPLICATION_JSON_VALUE)
+    public FilmRealisateurDto findRealisateurByFilm(@PathVariable Integer id) {
+        Film film = filmService.findById(id);
+        return objectMapper.convertValue(film, FilmRealisateurDto.class);
     }
 
     @DeleteMapping(path ="/{id}")
