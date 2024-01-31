@@ -37,4 +37,9 @@ public class RealisateurController {
         this.realisateurService.update(realisateur, id);
         return realisateur;
     }
+
+    @DeleteMapping(path = "/{id}")
+    public void delete(@PathVariable Integer id) {
+        this.realisateurService.delete(id);
+    }
 }

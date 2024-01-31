@@ -40,4 +40,10 @@ public class RealisateurService {
         this.realisateurRepository.save(realisateur);
         return realisateur;
     }
+
+    // A TESTER
+    public void delete(Integer id) {
+        Realisateur realisateur = this.findById(id);
+        this.realisateurRepository.delete(realisateur);
+    }
 }
