@@ -1,26 +1,31 @@
 package fr.timothe.cinemacda4.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.timothe.cinemacda4.dto.FilmCompletDto;
+import fr.timothe.cinemacda4.dto.FilmsReduitsDto;
 import fr.timothe.cinemacda4.entity.Film;
 import fr.timothe.cinemacda4.service.FilmService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.attribute.standard.Media;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/films")
 public class FilmController {
     private final FilmService filmService;
+    private final ObjectMapper objectMapper;
 
-    public FilmController(FilmService filmService) {
+    public FilmController(FilmService filmService, ObjectMapper objectMapper) {
         this.filmService = filmService;
+        this.objectMapper = objectMapper;
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Film> findAll() {
-        return filmService.findAll();
+    public List<FilmsReduitsDto> findAll() {
+        return filmService.findAll().stream().map(
+                film -> objectMapper.convertValue(film, FilmsReduitsDto.class)
+        ).toList();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -29,8 +34,9 @@ public class FilmController {
     }
 
     @GetMapping(path ="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Film findById(@PathVariable Integer id) {
-        return filmService.findById(id);
+    public FilmCompletDto findById(@PathVariable Integer id) {
+        Film film = filmService.findById(id);
+        return objectMapper.convertValue(film, FilmCompletDto.class);
     }
 
     @DeleteMapping(path ="/{id}")
