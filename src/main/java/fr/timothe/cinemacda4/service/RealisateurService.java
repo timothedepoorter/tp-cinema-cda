@@ -1,5 +1,6 @@
 package fr.timothe.cinemacda4.service;
 
+import fr.timothe.cinemacda4.entity.Film;
 import fr.timothe.cinemacda4.entity.Realisateur;
 import fr.timothe.cinemacda4.repository.RealisateurRepository;
 import org.springframework.http.HttpStatus;
@@ -11,9 +12,11 @@ import java.util.List;
 @Service
 public class RealisateurService {
     private final RealisateurRepository realisateurRepository;
+    private final FilmService filmService;
 
-    public RealisateurService(RealisateurRepository realisateurRepository) {
+    public RealisateurService(RealisateurRepository realisateurRepository, FilmService filmService) {
         this.realisateurRepository = realisateurRepository;
+        this.filmService = filmService;
     }
 
     public List<Realisateur> findAll() {
@@ -44,6 +47,13 @@ public class RealisateurService {
     // A TESTER
     public void delete(Integer id) {
         Realisateur realisateur = this.findById(id);
+        List<Film> filmsAvecCeRealisateur = filmService.findAllByRealisateurId(id);
+        filmsAvecCeRealisateur.forEach(
+                (film) -> {
+                    film.setRealisateur(null);
+                    filmService.save(film);
+                }
+        );
         this.realisateurRepository.delete(realisateur);
     }
 }
