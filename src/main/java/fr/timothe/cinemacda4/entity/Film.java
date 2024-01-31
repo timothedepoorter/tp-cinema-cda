@@ -15,10 +15,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Table(name = "film")
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id"
-)
 public class Film {
     @Id
     @GeneratedValue

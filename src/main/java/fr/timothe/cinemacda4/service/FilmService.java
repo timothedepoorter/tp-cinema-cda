@@ -22,7 +22,8 @@ public class FilmService {
     }
 
     public Film save(Film film) {
-        return filmRepository.save(film);
+        filmRepository.save(film);
+        return film;
     }
 
     public Film findById(Integer id) {

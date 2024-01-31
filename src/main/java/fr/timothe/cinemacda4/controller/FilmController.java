@@ -28,7 +28,7 @@ public class FilmController {
         ).toList();
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
     public Film save(@RequestBody Film film) {
         return filmService.save(film);
     }
