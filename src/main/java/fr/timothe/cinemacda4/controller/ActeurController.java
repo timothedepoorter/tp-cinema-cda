@@ -37,4 +37,9 @@ public class ActeurController {
         this.acteurService.update(acteur, id);
         return acteur;
     }
+
+    @DeleteMapping(path = "/{id}")
+    public void delete(@PathVariable Integer id) {
+        this.acteurService.delete(id);
+    }
 }

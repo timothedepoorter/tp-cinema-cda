@@ -1,6 +1,7 @@
 package fr.timothe.cinemacda4.service;
 
 import fr.timothe.cinemacda4.entity.Acteur;
+import fr.timothe.cinemacda4.entity.Realisateur;
 import fr.timothe.cinemacda4.repository.ActeurRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -40,5 +41,10 @@ public class ActeurService {
         acteur.setId(id);
         this.acteurRepository.save(acteur);
         return acteur;
+    }
+
+    public void delete(Integer id) {
+        Acteur acteur = this.findById(id);
+        this.acteurRepository.delete(acteur);
     }
 }
