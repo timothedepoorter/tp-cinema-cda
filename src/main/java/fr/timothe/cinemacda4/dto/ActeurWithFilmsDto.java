@@ -7,8 +7,7 @@ import java.util.List;
 
 @Data
 public class ActeurWithFilmsDto {
-    private Integer id;
     private String nom;
     private String prenom;
-    private List<FilmsReduitsDto> films = new ArrayList<>();
+    private List<FilmsWithTitreDateSortieRealisateur> films = new ArrayList<>();
 }
