@@ -1,7 +1,5 @@
 package fr.timothe.cinemacda4.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,10 +10,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Table(name = "realisateur")
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id"
-)
 public class Realisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
