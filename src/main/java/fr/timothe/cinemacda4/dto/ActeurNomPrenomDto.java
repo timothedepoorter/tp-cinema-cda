@@ -3,7 +3,7 @@ package fr.timothe.cinemacda4.dto;
 import lombok.Data;
 
 @Data
-public class ActeurDto {
+public class ActeurNomPrenomDto {
     private String nom;
     private String prenom;
 }

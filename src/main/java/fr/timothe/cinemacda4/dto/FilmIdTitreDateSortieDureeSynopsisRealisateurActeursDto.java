@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class FilmCompletDto {
+public class FilmIdTitreDateSortieDureeSynopsisRealisateurActeursDto {
     private Integer id;
     private String titre;
     private LocalDate dateSortie;
     private int duree;
     private String synopsis;
     private Realisateur realisateur;
-    private List<ActeurDto> acteurs = new ArrayList<>();
+    private List<ActeurNomPrenomDto> acteurs = new ArrayList<>();
 }

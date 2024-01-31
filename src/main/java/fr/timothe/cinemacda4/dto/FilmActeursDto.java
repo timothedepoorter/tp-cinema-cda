@@ -7,5 +7,5 @@ import java.util.List;
 
 @Data
 public class FilmActeursDto {
-    private List<ActeurDto> acteurs = new ArrayList<>();
+    private List<ActeurNomPrenomDto> acteurs = new ArrayList<>();
 }

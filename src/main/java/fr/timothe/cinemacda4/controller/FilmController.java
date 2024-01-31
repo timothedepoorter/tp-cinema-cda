@@ -2,9 +2,9 @@ package fr.timothe.cinemacda4.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.timothe.cinemacda4.dto.FilmActeursDto;
-import fr.timothe.cinemacda4.dto.FilmCompletDto;
+import fr.timothe.cinemacda4.dto.FilmIdTitreDateSortieDureeSynopsisRealisateurActeursDto;
 import fr.timothe.cinemacda4.dto.FilmRealisateurDto;
-import fr.timothe.cinemacda4.dto.FilmsReduitsDto;
+import fr.timothe.cinemacda4.dto.FilmIdTitreDateSortieDureeSynopsisDto;
 import fr.timothe.cinemacda4.entity.Film;
 import fr.timothe.cinemacda4.service.FilmService;
 import org.springframework.http.MediaType;
@@ -24,9 +24,9 @@ public class FilmController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<FilmsReduitsDto> findAll() {
+    public List<FilmIdTitreDateSortieDureeSynopsisDto> findAll() {
         return filmService.findAll().stream().map(
-                film -> objectMapper.convertValue(film, FilmsReduitsDto.class)
+                film -> objectMapper.convertValue(film, FilmIdTitreDateSortieDureeSynopsisDto.class)
         ).toList();
     }
 
@@ -36,9 +36,9 @@ public class FilmController {
     }
 
     @GetMapping(path ="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public FilmCompletDto findById(@PathVariable Integer id) {
+    public FilmIdTitreDateSortieDureeSynopsisRealisateurActeursDto findById(@PathVariable Integer id) {
         Film film = filmService.findById(id);
-        return objectMapper.convertValue(film, FilmCompletDto.class);
+        return objectMapper.convertValue(film, FilmIdTitreDateSortieDureeSynopsisRealisateurActeursDto.class);
     }
 
     @GetMapping(path ="/{id}/acteurs", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -5,8 +5,8 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class FilmsWithTitreDateSortieRealisateur {
+public class FilmTitreDateSortieRealisateur {
     private String titre;
     private LocalDate dateSortie;
-    private RealisateurDto realisateur;
+    private RealisateurNomPrenomDto realisateur;
 }

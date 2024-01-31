@@ -1,8 +1,8 @@
 package fr.timothe.cinemacda4.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.timothe.cinemacda4.dto.ActeurDto;
-import fr.timothe.cinemacda4.dto.ActeurWithFilmsDto;
+import fr.timothe.cinemacda4.dto.ActeurNomPrenomDto;
+import fr.timothe.cinemacda4.dto.ActeurNomPrenomFilmsDto;
 import fr.timothe.cinemacda4.entity.Acteur;
 import fr.timothe.cinemacda4.service.ActeurService;
 import org.springframework.http.MediaType;
@@ -21,15 +21,15 @@ public class ActeurController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ActeurDto> findAll() {
+    public List<ActeurNomPrenomDto> findAll() {
         return this.acteurService.findAll().stream().map(
-                acteur -> objectMapper.convertValue(acteur, ActeurDto.class)
+                acteur -> objectMapper.convertValue(acteur, ActeurNomPrenomDto.class)
         ).toList();
     }
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ActeurWithFilmsDto findById(@PathVariable Integer id) {
-        return objectMapper.convertValue(this.acteurService.findById(id), ActeurWithFilmsDto.class);
+    public ActeurNomPrenomFilmsDto findById(@PathVariable Integer id) {
+        return objectMapper.convertValue(this.acteurService.findById(id), ActeurNomPrenomFilmsDto.class);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
