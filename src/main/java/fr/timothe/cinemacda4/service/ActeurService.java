@@ -1,0 +1,20 @@
+package fr.timothe.cinemacda4.service;
+
+import fr.timothe.cinemacda4.entity.Acteur;
+import fr.timothe.cinemacda4.repository.ActeurRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class ActeurService {
+    private final ActeurRepository acteurRepository;
+
+    public ActeurService(ActeurRepository acteurRepository) {
+        this.acteurRepository = acteurRepository;
+    }
+
+    public List<Acteur> findAll() {
+        return this.acteurRepository.findAll();
+    }
+}
