@@ -29,4 +29,9 @@ public class ActeurService {
                 )
         );
     }
+
+    public Acteur save(Acteur acteur) {
+        this.acteurRepository.save(acteur);
+        return acteur;
+    }
 }
