@@ -34,4 +34,11 @@ public class ActeurService {
         this.acteurRepository.save(acteur);
         return acteur;
     }
+
+    public Acteur update(Acteur acteur, Integer id) {
+        this.findById(id);
+        acteur.setId(id);
+        this.acteurRepository.save(acteur);
+        return acteur;
+    }
 }

@@ -31,4 +31,10 @@ public class ActeurController {
         this.acteurService.save(acteur);
         return acteur;
     }
+
+    @PutMapping(path ="/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Acteur update(@RequestBody Acteur acteur, @PathVariable Integer id) {
+        this.acteurService.update(acteur, id);
+        return acteur;
+    }
 }
