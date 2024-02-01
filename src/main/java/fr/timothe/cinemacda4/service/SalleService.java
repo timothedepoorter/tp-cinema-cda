@@ -34,4 +34,9 @@ public class SalleService {
     public void save(Salle salle) {
         this.salleRepository.save(salle);
     }
+
+    public void delete(Integer id) {
+        Salle salle = this.findById(id);
+        this.salleRepository.delete(salle);
+    }
 }
