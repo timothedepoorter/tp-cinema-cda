@@ -88,4 +88,8 @@ public class RealisateurService {
         // Puis l'on retourne l'objet qu'on a fabriqué
         return realisateurAvecFilmsDto;
     }
+
+    public List<Film> findFilmsByRealisateurId(Integer id) {
+        return filmService.findAllByRealisateurId(id);
+    }
 }

@@ -1,6 +1,9 @@
 package fr.timothe.cinemacda4.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.timothe.cinemacda4.dto.FilmTitreDureeDateSortieDto;
 import fr.timothe.cinemacda4.dto.RealisateurAvecFilmsDto;
+import fr.timothe.cinemacda4.entity.Film;
 import fr.timothe.cinemacda4.entity.Realisateur;
 import fr.timothe.cinemacda4.service.RealisateurService;
 import org.springframework.http.MediaType;
@@ -12,9 +15,11 @@ import java.util.List;
 @RequestMapping(path = "/realisateurs")
 public class RealisateurController {
     private final RealisateurService realisateurService;
+    private final ObjectMapper objectMapper;
 
-    public RealisateurController(RealisateurService realisateurService) {
+    public RealisateurController(RealisateurService realisateurService, ObjectMapper objectMapper) {
         this.realisateurService = realisateurService;
+        this.objectMapper = objectMapper;
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -25,6 +30,15 @@ public class RealisateurController {
     @GetMapping(path ="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public RealisateurAvecFilmsDto findById(@PathVariable int id) {
         return realisateurService.findRealisateurWithFilm(id);
+    }
+
+    @GetMapping(path ="/{id}/films", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<FilmTitreDureeDateSortieDto> findFilmsByRealisateurId(@PathVariable Integer id) {
+        List<Film> filmsDuRealisateur = realisateurService.findFilmsByRealisateurId(id);
+
+        return filmsDuRealisateur.stream().map(
+                film -> objectMapper.convertValue(film, FilmTitreDureeDateSortieDto.class)
+        ).toList();
     }
 
 
