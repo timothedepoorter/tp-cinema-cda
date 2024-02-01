@@ -1,6 +1,8 @@
 package fr.timothe.cinemacda4.service;
 
+import fr.timothe.cinemacda4.entity.Acteur;
 import fr.timothe.cinemacda4.entity.Film;
+import fr.timothe.cinemacda4.repository.ActeurRepository;
 import fr.timothe.cinemacda4.repository.FilmRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -12,9 +14,10 @@ import java.util.Optional;
 @Service
 public class FilmService {
     private final FilmRepository filmRepository;
-
-    public FilmService(FilmRepository filmRepository) {
+    private final ActeurService acteurService;
+    public FilmService(FilmRepository filmRepository, ActeurService acteurService) {
         this.filmRepository = filmRepository;
+        this.acteurService = acteurService;
     }
 
     public List<Film> findAll() {
@@ -60,4 +63,24 @@ public class FilmService {
                         "Aucun film ayant ce réalisateur"
                 ));
     }
+
+    public void saveActeurToFilm(Acteur acteur, Integer id) {
+        this.acteurService.findById(acteur.getId());
+        Film film = this.findById(id);
+        List<Acteur> listeActeur = film.getActeurs();
+        listeActeur.add(acteur);
+        film.setActeurs(listeActeur);
+        this.save(film);
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
