@@ -1,7 +1,7 @@
 package fr.timothe.cinemacda4.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.timothe.cinemacda4.dto.FilmTitreDateSortieDto;
+import fr.timothe.cinemacda4.dto.FilmIdTitreDateSortieDto;
 import fr.timothe.cinemacda4.dto.RealisateurIdNomPrenomFilmsTitreDateSortieDto;
 import fr.timothe.cinemacda4.entity.Film;
 import fr.timothe.cinemacda4.entity.Realisateur;
@@ -81,7 +81,7 @@ public class RealisateurService {
                 // On convertit la liste de film en notre DTO FilmMini
                 // pour ne pas avoir d'erreur de type
                 filmsDuRealisateur.stream().map(
-                        film -> objectMapper.convertValue(film, FilmTitreDateSortieDto.class)
+                        film -> objectMapper.convertValue(film, FilmIdTitreDateSortieDto.class)
                 ).toList()
         );
 

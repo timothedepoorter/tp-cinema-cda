@@ -10,5 +10,5 @@ public class RealisateurIdNomPrenomFilmsTitreDateSortieDto {
     private Integer id;
     private String nom;
     private String prenom;
-    private List<FilmTitreDateSortieDto> films = new ArrayList<>();
+    private List<FilmIdTitreDateSortieDto> films = new ArrayList<>();
 }
