@@ -36,4 +36,10 @@ public class SalleController {
     public void delete(@PathVariable Integer id) {
         this.salleService.delete(id);
     }
+
+    @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Salle update(@RequestBody Salle salle, @PathVariable Integer id) {
+        this.salleService.update(salle, id);
+        return salle;
+    }
 }
