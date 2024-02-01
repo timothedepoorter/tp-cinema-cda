@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class RealisateurAvecFilmsDto {
+public class RealisateurIdNomPrenomFilmsTitreDateSortieDto {
     private Integer id;
     private String nom;
     private String prenom;

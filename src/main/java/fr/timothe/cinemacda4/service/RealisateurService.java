@@ -2,7 +2,7 @@ package fr.timothe.cinemacda4.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.timothe.cinemacda4.dto.FilmTitreDateSortieDto;
-import fr.timothe.cinemacda4.dto.RealisateurAvecFilmsDto;
+import fr.timothe.cinemacda4.dto.RealisateurIdNomPrenomFilmsTitreDateSortieDto;
 import fr.timothe.cinemacda4.entity.Film;
 import fr.timothe.cinemacda4.entity.Realisateur;
 import fr.timothe.cinemacda4.repository.RealisateurRepository;
@@ -62,14 +62,14 @@ public class RealisateurService {
         this.realisateurRepository.delete(realisateur);
     }
 
-    public RealisateurAvecFilmsDto findRealisateurWithFilm(Integer id) {
+    public RealisateurIdNomPrenomFilmsTitreDateSortieDto findRealisateurWithFilm(Integer id) {
         // On récupère le réalisateur demandé
         Realisateur realisateur = this.findById(id);
         // On récupère la liste des films de ce réal en faisant appel au serivce Films
         List<Film> filmsDuRealisateur = filmService.findAllByRealisateurId(id);
 
         // On créé une instance à partir de notre DTO
-        RealisateurAvecFilmsDto realisateurAvecFilmsDto = new RealisateurAvecFilmsDto();
+        RealisateurIdNomPrenomFilmsTitreDateSortieDto realisateurAvecFilmsDto = new RealisateurIdNomPrenomFilmsTitreDateSortieDto();
 
         // On récupère les valeurs du réalisateur et on les affecte
         // à notre objet

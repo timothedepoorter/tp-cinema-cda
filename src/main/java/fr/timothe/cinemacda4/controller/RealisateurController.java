@@ -2,7 +2,7 @@ package fr.timothe.cinemacda4.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.timothe.cinemacda4.dto.FilmTitreDureeDateSortieDto;
-import fr.timothe.cinemacda4.dto.RealisateurAvecFilmsDto;
+import fr.timothe.cinemacda4.dto.RealisateurIdNomPrenomFilmsTitreDateSortieDto;
 import fr.timothe.cinemacda4.entity.Film;
 import fr.timothe.cinemacda4.entity.Realisateur;
 import fr.timothe.cinemacda4.service.RealisateurService;
@@ -28,7 +28,7 @@ public class RealisateurController {
     }
 
     @GetMapping(path ="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public RealisateurAvecFilmsDto findById(@PathVariable int id) {
+    public RealisateurIdNomPrenomFilmsTitreDateSortieDto findById(@PathVariable int id) {
         return realisateurService.findRealisateurWithFilm(id);
     }
 
