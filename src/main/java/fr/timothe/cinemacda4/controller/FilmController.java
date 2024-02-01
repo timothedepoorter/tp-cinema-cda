@@ -8,6 +8,7 @@ import fr.timothe.cinemacda4.dto.FilmIdTitreDateSortieDureeSynopsisDto;
 import fr.timothe.cinemacda4.entity.Acteur;
 import fr.timothe.cinemacda4.entity.Film;
 import fr.timothe.cinemacda4.service.FilmService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,11 +33,13 @@ public class FilmController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Film save(@RequestBody Film film) {
         return filmService.save(film);
     }
 
     @PostMapping(path = "/{id}/acteurs", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
     public Acteur saveActeurToFilm(@RequestBody Acteur acteur, @PathVariable Integer id) {
         this.filmService.saveActeurToFilm(acteur, id);
         return acteur;
