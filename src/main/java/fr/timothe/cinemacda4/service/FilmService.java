@@ -3,14 +3,12 @@ package fr.timothe.cinemacda4.service;
 import fr.timothe.cinemacda4.entity.Acteur;
 import fr.timothe.cinemacda4.entity.Film;
 import fr.timothe.cinemacda4.exception.FilmNotFoundException;
-import fr.timothe.cinemacda4.repository.ActeurRepository;
 import fr.timothe.cinemacda4.repository.FilmRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FilmService {
