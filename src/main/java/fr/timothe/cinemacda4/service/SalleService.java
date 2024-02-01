@@ -30,4 +30,8 @@ public class SalleService {
                 )
         );
     }
+
+    public void save(Salle salle) {
+        this.salleRepository.save(salle);
+    }
 }
