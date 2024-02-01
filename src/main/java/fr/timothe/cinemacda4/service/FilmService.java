@@ -2,6 +2,7 @@ package fr.timothe.cinemacda4.service;
 
 import fr.timothe.cinemacda4.entity.Acteur;
 import fr.timothe.cinemacda4.entity.Film;
+import fr.timothe.cinemacda4.exception.FilmNotFoundException;
 import fr.timothe.cinemacda4.repository.ActeurRepository;
 import fr.timothe.cinemacda4.repository.FilmRepository;
 import org.springframework.http.HttpStatus;
@@ -49,19 +50,14 @@ public class FilmService {
 
     public Film findByTitre(String titre) {
         return filmRepository.findByTitre(titre).orElseThrow(
-                () -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND,
-                        "Film " + titre + " non trouvé"
-                )
+                FilmNotFoundException::new
         );
     }
 
     public List<Film> findAllByRealisateurId(Integer id) {
         return filmRepository.findAllByRealisateurId(id).orElseThrow(
-                () -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND,
-                        "Aucun film ayant ce réalisateur"
-                ));
+                FilmNotFoundException::new
+        );
     }
 
     public void saveActeurToFilm(Acteur acteur, Integer id) {
