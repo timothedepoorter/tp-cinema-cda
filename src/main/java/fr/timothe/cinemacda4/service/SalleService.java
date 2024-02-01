@@ -2,7 +2,11 @@ package fr.timothe.cinemacda4.service;
 
 import fr.timothe.cinemacda4.entity.Salle;
 import fr.timothe.cinemacda4.repository.SalleRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -16,5 +20,14 @@ public class SalleService {
 
     public List<Salle> findAll() {
         return this.salleRepository.findAll();
+    }
+
+    public Salle findById(Integer id) {
+        return this.salleRepository.findById(id).orElseThrow(
+                () -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Aucune salle trouvée pour l'id : " + id
+                )
+        );
     }
 }
