@@ -1,5 +1,6 @@
 package fr.timothe.cinemacda4.controller;
 
+import fr.timothe.cinemacda4.dto.RealisateurAvecFilmsDto;
 import fr.timothe.cinemacda4.entity.Realisateur;
 import fr.timothe.cinemacda4.service.RealisateurService;
 import org.springframework.http.MediaType;
@@ -22,9 +23,10 @@ public class RealisateurController {
     }
 
     @GetMapping(path ="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Realisateur findById(@PathVariable Integer id) {
-        return this.realisateurService.findById(id);
+    public RealisateurAvecFilmsDto findById(@PathVariable int id) {
+        return realisateurService.findRealisateurWithFilm(id);
     }
+
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public Realisateur save(@RequestBody Realisateur realisateur) {

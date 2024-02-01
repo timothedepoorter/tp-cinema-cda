@@ -1,5 +1,8 @@
 package fr.timothe.cinemacda4.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.timothe.cinemacda4.dto.FilmTitreDateSortieDto;
+import fr.timothe.cinemacda4.dto.RealisateurAvecFilmsDto;
 import fr.timothe.cinemacda4.entity.Film;
 import fr.timothe.cinemacda4.entity.Realisateur;
 import fr.timothe.cinemacda4.repository.RealisateurRepository;
@@ -13,10 +16,12 @@ import java.util.List;
 public class RealisateurService {
     private final RealisateurRepository realisateurRepository;
     private final FilmService filmService;
+    private final ObjectMapper objectMapper;
 
-    public RealisateurService(RealisateurRepository realisateurRepository, FilmService filmService) {
+    public RealisateurService(RealisateurRepository realisateurRepository, FilmService filmService, ObjectMapper objectMapper) {
         this.realisateurRepository = realisateurRepository;
         this.filmService = filmService;
+        this.objectMapper = objectMapper;
     }
 
     public List<Realisateur> findAll() {
@@ -55,5 +60,32 @@ public class RealisateurService {
                 }
         );
         this.realisateurRepository.delete(realisateur);
+    }
+
+    public RealisateurAvecFilmsDto findRealisateurWithFilm(Integer id) {
+        // On récupère le réalisateur demandé
+        Realisateur realisateur = this.findById(id);
+        // On récupère la liste des films de ce réal en faisant appel au serivce Films
+        List<Film> filmsDuRealisateur = filmService.findAllByRealisateurId(id);
+
+        // On créé une instance à partir de notre DTO
+        RealisateurAvecFilmsDto realisateurAvecFilmsDto = new RealisateurAvecFilmsDto();
+
+        // On récupère les valeurs du réalisateur et on les affecte
+        // à notre objet
+        realisateurAvecFilmsDto.setId(realisateur.getId());
+        realisateurAvecFilmsDto.setNom(realisateur.getNom());
+        realisateurAvecFilmsDto.setPrenom(realisateur.getPrenom());
+
+        realisateurAvecFilmsDto.setFilms(
+                // On convertit la liste de film en notre DTO FilmMini
+                // pour ne pas avoir d'erreur de type
+                filmsDuRealisateur.stream().map(
+                        film -> objectMapper.convertValue(film, FilmTitreDateSortieDto.class)
+                ).toList()
+        );
+
+        // Puis l'on retourne l'objet qu'on a fabriqué
+        return realisateurAvecFilmsDto;
     }
 }
