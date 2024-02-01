@@ -9,5 +9,5 @@ import java.util.List;
 public class ActeurNomPrenomFilmsDto {
     private String nom;
     private String prenom;
-    private List<FilmTitreDateSortieRealisateur> films = new ArrayList<>();
+    private List<FilmTitreDateSortieRealisateurDto> films = new ArrayList<>();
 }
