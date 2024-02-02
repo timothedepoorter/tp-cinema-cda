@@ -36,4 +36,9 @@ public class SeanceController {
     public Seance update(@RequestBody Seance seance, @PathVariable Integer id) {
         return this.seanceService.update(seance, id);
     }
+
+    @DeleteMapping(path = "/{id}")
+    public void delete(@PathVariable Integer id) {
+        this.seanceService.delete(id);
+    }
 }

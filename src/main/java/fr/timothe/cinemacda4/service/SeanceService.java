@@ -40,4 +40,9 @@ public class SeanceService {
         seance.setId(id);
         return this.save(seance);
     }
+
+    public void delete(Integer id) {
+        Seance seance = this.findById(id);
+        this.seanceRepository.delete(seance);
+    }
 }
