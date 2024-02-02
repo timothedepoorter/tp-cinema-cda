@@ -1,5 +1,7 @@
 package fr.timothe.cinemacda4.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.timothe.cinemacda4.dto.SeanceDto.SeanceIdDatePrixPlacesDisposSalleDto;
 import fr.timothe.cinemacda4.entity.Seance;
 import fr.timothe.cinemacda4.service.SeanceService;
 import org.springframework.http.HttpStatus;
@@ -13,30 +15,47 @@ import java.util.List;
 @RequestMapping(path = "/seances")
 public class SeanceController {
     private final SeanceService seanceService;
+    private final ObjectMapper objectMapper;
 
-    public SeanceController(SeanceService seanceService) {
+    public SeanceController(SeanceService seanceService, ObjectMapper objectMapper) {
         this.seanceService = seanceService;
+        this.objectMapper = objectMapper;
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Seance> findAll() {
-        return this.seanceService.findAll();
+    public List<SeanceIdDatePrixPlacesDisposSalleDto> findAll() {
+        List<Seance> seances = this.seanceService.findAll();
+        return seances.stream().map(
+                seance -> objectMapper.convertValue(
+                        seance,
+                        SeanceIdDatePrixPlacesDisposSalleDto.class
+                )
+        ).toList();
     }
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Seance findById(@PathVariable Integer id) {
-        return this.seanceService.findById(id);
+    public SeanceIdDatePrixPlacesDisposSalleDto findById(@PathVariable Integer id) {
+        return objectMapper.convertValue(
+                this.seanceService.findById(id),
+                SeanceIdDatePrixPlacesDisposSalleDto.class
+        );
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public Seance save(@RequestBody Seance seance) {
-        return this.seanceService.save(seance);
+    public SeanceIdDatePrixPlacesDisposSalleDto save(@RequestBody Seance seance) {
+        return objectMapper.convertValue(
+                this.seanceService.save(seance),
+                SeanceIdDatePrixPlacesDisposSalleDto.class
+        );
     }
 
     @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Seance update(@RequestBody Seance seance, @PathVariable Integer id) {
-        return this.seanceService.update(seance, id);
+    public SeanceIdDatePrixPlacesDisposSalleDto update(@RequestBody Seance seance, @PathVariable Integer id) {
+        return objectMapper.convertValue(
+                this.seanceService.update(seance, id),
+                SeanceIdDatePrixPlacesDisposSalleDto.class
+        );
     }
 
     @DeleteMapping(path = "/{id}")
