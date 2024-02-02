@@ -22,4 +22,7 @@ public class Seance {
 
     @Column(nullable = false)
     private Integer placesDisponibles;
+
+    @Column(nullable = false)
+    private Float prix;
 }
