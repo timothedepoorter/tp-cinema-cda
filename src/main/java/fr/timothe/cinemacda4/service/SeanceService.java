@@ -1,5 +1,6 @@
 package fr.timothe.cinemacda4.service;
 
+import fr.timothe.cinemacda4.entity.Salle;
 import fr.timothe.cinemacda4.entity.Seance;
 import fr.timothe.cinemacda4.repository.SalleRepository;
 import fr.timothe.cinemacda4.repository.SeanceRepository;
@@ -36,14 +37,16 @@ public class SeanceService {
     }
 
     public Seance save(Seance seance) {
-        salleService.findById(seance.getSalle().getId());
+        Salle salle = salleService.findById(seance.getSalle().getId());
+        seance.setPlacesDisponibles(salle.getCapacite());
         this.seanceRepository.save(seance);
         return seance;
     }
 
     public Seance update(Seance seance, Integer id) {
-        salleService.findById(seance.getSalle().getId());
+        Salle salle = salleService.findById(seance.getSalle().getId());
         this.findById(id);
+        seance.setPlacesDisponibles(salle.getCapacite());
         seance.setId(id);
         return this.save(seance);
     }
