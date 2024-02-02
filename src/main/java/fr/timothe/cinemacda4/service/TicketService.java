@@ -1,6 +1,8 @@
 package fr.timothe.cinemacda4.service;
 
+import fr.timothe.cinemacda4.entity.Seance;
 import fr.timothe.cinemacda4.entity.Ticket;
+import fr.timothe.cinemacda4.repository.SeanceRepository;
 import fr.timothe.cinemacda4.repository.TicketRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -12,10 +14,12 @@ import java.util.List;
 @Service
 public class TicketService {
     private final TicketRepository ticketRepository;
+    private final SeanceRepository seanceRepository;
     private final SeanceService seanceService;
 
-    public TicketService(TicketRepository ticketRepository, SeanceService seanceService) {
+    public TicketService(TicketRepository ticketRepository, SeanceRepository seanceRepository, SeanceService seanceService) {
         this.ticketRepository = ticketRepository;
+        this.seanceRepository = seanceRepository;
         this.seanceService = seanceService;
     }
 
@@ -32,8 +36,30 @@ public class TicketService {
         );
     }
 
+    // Code à reformater
     public Ticket save(Ticket ticket) {
-        this.seanceService.findById(ticket.getSeance().getId());
+        if (ticket.getNomClient().isEmpty()) {
+            throw new IllegalArgumentException(
+                    "Veuillez ajouter un nom pour le ticket"
+            );
+        }
+
+        if (ticket.getNombrePlaces() <= 0) {
+            throw new IllegalArgumentException(
+                    "Le nombre de place doit être supérieur à 0"
+            );
+        }
+
+        Seance seance = this.seanceService.findById(ticket.getSeance().getId());
+
+        if (seance.getPlacesDisponibles() - ticket.getNombrePlaces() < 0) {
+            throw new IllegalArgumentException(
+                    "Il ne reste que " + seance.getPlacesDisponibles() + " places disponibles pour cette séance"
+            );
+        }
+
+        seance.setPlacesDisponibles(seance.getPlacesDisponibles() - ticket.getNombrePlaces());
+        this.seanceRepository.save(seance);
         this.ticketRepository.save(ticket);
         return ticket;
     }
