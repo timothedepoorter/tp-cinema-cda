@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -38,6 +39,19 @@ public class SeanceService {
         Salle salle = salleService.findById(seance.getSalle().getId());
         filmService.findById(seance.getFilm().getId());
         seance.setPlacesDisponibles(salle.getCapacite());
+
+        if (seance.getDate().isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException(
+                    "La date de la séance doit être ultérieure à la date actuelle"
+            );
+        }
+
+        if (seance.getPrix() <= 0) {
+            throw new IllegalArgumentException(
+                    "Le prix doit être supérieur à 0 €"
+            );
+        }
+
         this.seanceRepository.save(seance);
         return seance;
     }
