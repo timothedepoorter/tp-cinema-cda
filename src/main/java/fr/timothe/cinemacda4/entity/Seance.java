@@ -25,4 +25,8 @@ public class Seance {
 
     @Column(nullable = false)
     private Float prix;
+
+    @ManyToOne
+    @JoinColumn(name = "salle_id", nullable = false)
+    private Salle salle;
 }
