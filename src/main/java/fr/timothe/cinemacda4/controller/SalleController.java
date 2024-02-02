@@ -30,8 +30,7 @@ public class SalleController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public Salle save(@RequestBody Salle salle) {
-        this.salleService.save(salle);
-        return salle;
+        return this.salleService.save(salle);
     }
 
     @DeleteMapping(path = "/{id}")

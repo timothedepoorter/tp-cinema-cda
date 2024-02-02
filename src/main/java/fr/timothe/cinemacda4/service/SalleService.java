@@ -31,8 +31,10 @@ public class SalleService {
         );
     }
 
-    public void save(Salle salle) {
+    // TO DO : return salle pour faire dans controller return this.salleService.save(salle) etc..
+    public Salle save(Salle salle) {
         this.salleRepository.save(salle);
+        return salle;
     }
 
     public void delete(Integer id) {
