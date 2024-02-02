@@ -1,6 +1,6 @@
 package fr.timothe.cinemacda4.dto.SeanceDto;
 
-import fr.timothe.cinemacda4.dto.SalleDto.SalleIdNumCapaciteDto;
+import fr.timothe.cinemacda4.dto.SalleDto.SalleIdNumDto;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -11,5 +11,5 @@ public class SeanceIdDatePrixPlacesDisposSalleDto {
     private LocalDate date;
     private Float prix;
     private Integer placesDisponibles;
-    private SalleIdNumCapaciteDto salle;
+    private SalleIdNumDto salle;
 }
