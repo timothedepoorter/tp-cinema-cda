@@ -3,7 +3,7 @@ package fr.timothe.cinemacda4.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;Create
+import lombok.Setter;
 
 import java.time.LocalDate;
 
