@@ -2,6 +2,7 @@ package fr.timothe.cinemacda4.controller;
 
 import fr.timothe.cinemacda4.entity.Seance;
 import fr.timothe.cinemacda4.service.SeanceService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +29,7 @@ public class SeanceController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
     public Seance save(@RequestBody Seance seance) {
         return this.seanceService.save(seance);
     }
