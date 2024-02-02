@@ -29,4 +29,8 @@ public class Seance {
     @ManyToOne
     @JoinColumn(name = "salle_id", nullable = false)
     private Salle salle;
+
+    @ManyToOne
+    @JoinColumn(name = "film_id", nullable = false)
+    private Film film;
 }
