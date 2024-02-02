@@ -7,5 +7,6 @@ import lombok.Data;
 public class TicketIdNomClientNbPlacesSeanceDto {
     private Integer id;
     private String nomClient;
+    private Integer nombrePlaces;
     private SeanceIdDatePrixDto seance;
 }
