@@ -1,5 +1,6 @@
-package fr.timothe.cinemacda4.dto;
+package fr.timothe.cinemacda4.dto.FilmDto;
 
+import fr.timothe.cinemacda4.dto.RealisateurDto.RealisateurNomPrenomDto;
 import lombok.Data;
 
 import java.time.LocalDate;

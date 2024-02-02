@@ -1,5 +1,6 @@
-package fr.timothe.cinemacda4.dto;
+package fr.timothe.cinemacda4.dto.RealisateurDto;
 
+import fr.timothe.cinemacda4.dto.FilmDto.FilmIdTitreDateSortieDto;
 import lombok.Data;
 
 import java.util.ArrayList;

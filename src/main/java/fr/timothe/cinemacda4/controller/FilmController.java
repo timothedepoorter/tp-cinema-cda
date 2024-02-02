@@ -1,10 +1,10 @@
 package fr.timothe.cinemacda4.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.timothe.cinemacda4.dto.FilmActeursDto;
-import fr.timothe.cinemacda4.dto.FilmIdTitreDateSortieDureeSynopsisRealisateurActeursDto;
-import fr.timothe.cinemacda4.dto.FilmRealisateurDto;
-import fr.timothe.cinemacda4.dto.FilmIdTitreDateSortieDureeSynopsisDto;
+import fr.timothe.cinemacda4.dto.FilmDto.FilmActeursDto;
+import fr.timothe.cinemacda4.dto.FilmDto.FilmIdTitreDateSortieDureeSynopsisRealisateurActeursDto;
+import fr.timothe.cinemacda4.dto.FilmDto.FilmRealisateurDto;
+import fr.timothe.cinemacda4.dto.FilmDto.FilmIdTitreDateSortieDureeSynopsisDto;
 import fr.timothe.cinemacda4.entity.Acteur;
 import fr.timothe.cinemacda4.entity.Film;
 import fr.timothe.cinemacda4.service.FilmService;

@@ -1,8 +1,8 @@
 package fr.timothe.cinemacda4.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.timothe.cinemacda4.dto.ActeurNomPrenomDto;
-import fr.timothe.cinemacda4.dto.ActeurNomPrenomFilmsDto;
+import fr.timothe.cinemacda4.dto.ActeurDto.ActeurNomPrenomDto;
+import fr.timothe.cinemacda4.dto.ActeurDto.ActeurNomPrenomFilmsDto;
 import fr.timothe.cinemacda4.entity.Acteur;
 import fr.timothe.cinemacda4.service.ActeurService;
 import org.springframework.http.MediaType;

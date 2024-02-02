@@ -1,8 +1,8 @@
 package fr.timothe.cinemacda4.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.timothe.cinemacda4.dto.FilmTitreDureeDateSortieDto;
-import fr.timothe.cinemacda4.dto.RealisateurIdNomPrenomFilmsTitreDateSortieDto;
+import fr.timothe.cinemacda4.dto.FilmDto.FilmTitreDureeDateSortieDto;
+import fr.timothe.cinemacda4.dto.RealisateurDto.RealisateurIdNomPrenomFilmsTitreDateSortieDto;
 import fr.timothe.cinemacda4.entity.Film;
 import fr.timothe.cinemacda4.entity.Realisateur;
 import fr.timothe.cinemacda4.service.RealisateurService;

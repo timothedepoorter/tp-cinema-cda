@@ -1,4 +1,4 @@
-package fr.timothe.cinemacda4.dto;
+package fr.timothe.cinemacda4.dto.ActeurDto;
 
 import lombok.Data;
 
