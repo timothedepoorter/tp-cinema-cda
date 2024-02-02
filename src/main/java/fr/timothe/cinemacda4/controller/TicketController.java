@@ -32,4 +32,9 @@ public class TicketController {
     public Ticket save(@RequestBody Ticket ticket) {
         return this.ticketService.save(ticket);
     }
+
+    @PutMapping(path = "/{id}" ,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Ticket update(@RequestBody Ticket ticket, @PathVariable Integer id) {
+        return this.ticketService.update(ticket, id);
+    }
 }

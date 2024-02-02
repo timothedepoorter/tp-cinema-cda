@@ -33,4 +33,10 @@ public class TicketService {
         this.ticketRepository.save(ticket);
         return ticket;
     }
+
+    public Ticket update(Ticket ticket, Integer id) {
+        this.findById(id);
+        ticket.setId(id);
+        return this.save(ticket);
+    }
 }
