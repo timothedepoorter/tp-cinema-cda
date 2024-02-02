@@ -39,4 +39,9 @@ public class TicketService {
         ticket.setId(id);
         return this.save(ticket);
     }
+
+    public void delete(Integer id) {
+        Ticket ticket = this.findById(id);
+        this.ticketRepository.delete(ticket);
+    }
 }

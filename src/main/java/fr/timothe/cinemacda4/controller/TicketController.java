@@ -37,4 +37,9 @@ public class TicketController {
     public Ticket update(@RequestBody Ticket ticket, @PathVariable Integer id) {
         return this.ticketService.update(ticket, id);
     }
+
+    @DeleteMapping(path = "/{id}")
+    public void delete(@PathVariable Integer id) {
+        this.ticketService.delete(id);
+    }
 }
