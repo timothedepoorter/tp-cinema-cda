@@ -34,4 +34,10 @@ public class SeanceService {
         this.seanceRepository.save(seance);
         return seance;
     }
+
+    public Seance update(Seance seance, Integer id) {
+        this.findById(id);
+        seance.setId(id);
+        return this.save(seance);
+    }
 }

@@ -31,4 +31,9 @@ public class SeanceController {
     public Seance save(@RequestBody Seance seance) {
         return this.seanceService.save(seance);
     }
+
+    @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Seance update(@RequestBody Seance seance, @PathVariable Integer id) {
+        return this.seanceService.update(seance, id);
+    }
 }
