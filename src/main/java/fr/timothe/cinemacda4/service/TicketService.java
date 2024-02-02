@@ -28,4 +28,9 @@ public class TicketService {
                 )
         );
     }
+
+    public Ticket save(Ticket ticket) {
+        this.ticketRepository.save(ticket);
+        return ticket;
+    }
 }
