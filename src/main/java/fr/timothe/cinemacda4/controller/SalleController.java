@@ -1,5 +1,7 @@
 package fr.timothe.cinemacda4.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.timothe.cinemacda4.dto.SalleDto.SalleIdNumCapaciteDto;
 import fr.timothe.cinemacda4.entity.Salle;
 import fr.timothe.cinemacda4.service.SalleService;
 import org.springframework.http.HttpStatus;
@@ -12,25 +14,38 @@ import java.util.List;
 @RequestMapping(path = "/salles")
 public class SalleController {
     private final SalleService salleService;
+    private final ObjectMapper objectMapper;
 
-    public SalleController(SalleService salleService) {
+    public SalleController(SalleService salleService, ObjectMapper objectMapper) {
         this.salleService = salleService;
+        this.objectMapper = objectMapper;
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Salle> findAll() {
-        return this.salleService.findAll();
+    public List<SalleIdNumCapaciteDto> findAll() {
+        List<Salle> salles = this.salleService.findAll();
+        return salles.stream().map(
+                salle -> objectMapper.convertValue(
+                        salle,
+                        SalleIdNumCapaciteDto.class)
+        ).toList();
     }
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Salle findById(@PathVariable Integer id) {
-        return this.salleService.findById(id);
+    public SalleIdNumCapaciteDto findById(@PathVariable Integer id) {
+        return objectMapper.convertValue(
+                this.salleService.findById(id),
+                SalleIdNumCapaciteDto.class
+        );
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public Salle save(@RequestBody Salle salle) {
-        return this.salleService.save(salle);
+    public SalleIdNumCapaciteDto save(@RequestBody Salle salle) {
+        return objectMapper.convertValue(
+                this.salleService.save(salle),
+                SalleIdNumCapaciteDto.class
+        );
     }
 
     @DeleteMapping(path = "/{id}")
@@ -39,8 +54,10 @@ public class SalleController {
     }
 
     @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Salle update(@RequestBody Salle salle, @PathVariable Integer id) {
-        this.salleService.update(salle, id);
-        return salle;
+    public SalleIdNumCapaciteDto update(@RequestBody Salle salle, @PathVariable Integer id) {
+        return objectMapper.convertValue(
+                this.salleService.update(salle, id),
+                SalleIdNumCapaciteDto.class
+        );
     }
 }
