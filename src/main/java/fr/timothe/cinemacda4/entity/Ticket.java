@@ -20,4 +20,8 @@ public class Ticket {
 
     @Column(nullable = false)
     private Integer nombrePlaces;
+
+    @ManyToOne
+    @JoinColumn(name = "seance_id", nullable = false)
+    private Seance seance;
 }

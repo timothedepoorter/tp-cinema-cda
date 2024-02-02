@@ -6,14 +6,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.imageio.spi.ServiceRegistry;
 import java.util.List;
 
 @Service
 public class TicketService {
     private final TicketRepository ticketRepository;
+    private final SeanceService seanceService;
 
-    public TicketService(TicketRepository ticketRepository) {
+    public TicketService(TicketRepository ticketRepository, SeanceService seanceService) {
         this.ticketRepository = ticketRepository;
+        this.seanceService = seanceService;
     }
 
     public List<Ticket> findAll() {
@@ -30,11 +33,13 @@ public class TicketService {
     }
 
     public Ticket save(Ticket ticket) {
+        this.seanceService.findById(ticket.getSeance().getId());
         this.ticketRepository.save(ticket);
         return ticket;
     }
 
     public Ticket update(Ticket ticket, Integer id) {
+        this.seanceService.findById(ticket.getSeance().getId());
         this.findById(id);
         ticket.setId(id);
         return this.save(ticket);
