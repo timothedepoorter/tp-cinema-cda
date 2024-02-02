@@ -29,4 +29,9 @@ public class SeanceService {
                 )
         );
     }
+
+    public Seance save(Seance seance) {
+        this.seanceRepository.save(seance);
+        return seance;
+    }
 }
